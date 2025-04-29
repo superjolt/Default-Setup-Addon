@@ -195,8 +195,7 @@ class RENDER_OT_cycle_gpu_button(bpy.types.Operator):
         context.scene.cycles.device = 'GPU'
         context.scene.cycles.preview_samples = 100
         context.scene.cycles.use_preview_denoising = True
-        context.scene.cycles.samples = 50
-        context.scene.cycles.samples = 50
+        context.scene.cycles.samples = 75
         context.scene.render.use_motion_blur = True
         context.scene.render.motion_blur_shutter = 0.5
         context.scene.render.use_persistent_data = True
