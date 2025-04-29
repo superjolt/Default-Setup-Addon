@@ -2,7 +2,19 @@
 This is just a passion project that will (probably) not suit other's workflow as I have customised this for me (for now).
 If you do use/share this, please credit me as either @ThatRandom-Coder or my main tag as @ThatRandomBlenderGuy
 
+How to install?
+You will instal this addon like any other one.
+1. To install this addon, download the latest release and save it to where you save your addon zip files (e.g. downloads)
+2. Open blender, go to edit > preferences > addons, and click the little drop down arrow at the top right hand corner of the window that opened
+3. Click "Install from disk"
+4. Locate where u saved the main.py file
+5. Once located, select "Install from disk" button.
+
+If you need any help, join my discord server and ping me @thatrandomblenderguy.
+link: https://discord.gg/EcYCHNDf55
+
 This addon includes common features that are quick to access like (subject to change base on version):
+
     - Render
         - Render engine to cycles
             - edits settings like denoiser
@@ -32,7 +44,8 @@ This addon includes common features that are quick to access like (subject to ch
         - Add rainbow colour ramp (single colour ramp)
         - Purge unused data
 
-# (Subject to change)
-
+## (Subject to change)
+- changes/plans for the addon are available in 'plan.txt'
 Some more functions will be added soon.
+
     
