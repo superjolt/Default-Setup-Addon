@@ -2,7 +2,7 @@ bl_info = {
     "name": "Default Setup Addon",
     "author": "That Random Blender Guy",
     "version": (1, 0, 0),
-    "blender": (2, 80, 0),
+    "blender": (4, 0, 0),
     "location": "3D Viewport > Sidebar > Default Setup Addon",
     "description": "Changes Default Settings to a template",
     "category": "Development",
@@ -12,7 +12,6 @@ import bpy
 
 
 #------------------------------------------------------Parent Panel UI Settings--------------------------------------------------------  
-
 class VIEW3D_PT_Default_Setup_Addon(bpy.types.Panel):
     bl_label = "Default Setup"
     bl_idname = "VIEW3D_PT_Default_Setup_Addon"
@@ -68,7 +67,26 @@ class VIEW3D_PT_Output_Settings(bpy.types.Panel):
         row.operator("output.equal_to_exr", text="Output as EXR", icon="IMAGE_DATA")
         row = layout.row()
         row.operator("output.equal_to_mp4", text="Output as MP4", icon="FILE_MOVIE")
+
+#------------------------------------------------------Child Panel: File Sharing---------------------------------------------------
+class VIEW3D_PT_File_Sharing(bpy.types.Panel):
+    """File Sharing"""
+    bl_label = "File Sharing"
+    bl_idname = "VIEW3D_PT_File_Sharing"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_parent_id = "VIEW3D_PT_Default_Setup_Addon"
+
+    def draw(self, context):
+        layout = self.layout
+        row = layout.row()
+        row.operator("external.data_pack_resources", text="Pack Resources", icon="PACKAGE")
+        row = layout.row()
+        row.operator("external.data_relative_files", text="Make Paths Relative", icon="FILEBROWSER")
+        row = layout.row()
+        row.operator("data.purge_unused", text = "Delete Unused Data", icon = "TRASH")
         
+
 #-----------------------------------------------------Child Panel: Physics Tab Settings------------------------------------------------
 
 class VIEW3D_PT_Physics_Tab_Settings(bpy.types.Panel):
@@ -173,12 +191,6 @@ class VIEW3D_PT_Misc(bpy.types.Panel):
         # Row for adding Rainbow Colour alone
         row = layout.row()
         row.operator("material.rainbow", text = "Add Rainbow Color Ramp", icon = "MATERIAL")
-        
-        layout.separator()
-        #purging unused data
-        row = layout.row()
-        row.operator("data.purge_unused", text = "Delete Unused Data", icon = "TRASH")
-
 
 ################################################################-----{OPERATOR DEFINING HERE}-----#########################################################
         
@@ -300,8 +312,42 @@ class OUTPUT_OT_mp4_video_button(bpy.types.Operator):
         
         self.report({'INFO'}, "Output settings changed to MP4.")
         return {"FINISHED"}
-        
-    
+
+#-----------------------------------------------------------Pack Resources------------------------------------------  
+class EXTERNAL_DATA_OT_pack_resources(bpy.types.Operator):
+    """Packs external files and textures into blend file"""
+    bl_idname = "external.data_pack_resources"
+    bl_label = "Pack Resources"
+
+    def execute(self, context):
+        bpy.ops.file.pack_all()
+        self.report({'INFO'}, "Files Packed.")
+        return {"FINISHED"}
+
+
+#----------------------------------------------------------- Relative File Locations------------------------------------------
+class EXTERNAL_DATA_OT_relative_files(bpy.types.Operator):
+    """Makes all external files and textures have relative file path"""
+    bl_idname = "external.data_relative_files"
+    bl_label = "Relative Files"
+
+    def execute(self, context):
+        bpy.ops.file.make_paths_relative()
+        self.report({'INFO'}, "Files Paths Made Relative.")
+        return {"FINISHED"}
+
+#----------------------------------------------------Purging Unused Data Blocks-------------------------------------------------
+
+class DATA_OT_purge_unused(bpy.types.Operator):
+    """Purge Unused Data. WARNING DELETES ALL UNUSED DATA BLOCKS (unless saved as fake user)"""
+    bl_idname = "data.purge_unused"
+    bl_label = "Purge Unused Data"
+
+    def execute(self, context):
+        bpy.ops.outliner.orphans_purge()
+        self.report({'INFO'}, "Unused data purged.")
+        return {'FINISHED'}
+
 #------------------------------------------------------Adding Nishita Sky Texture------------------------------------------------   
 
 class WORLD_OT_sky_texture_button(bpy.types.Operator):
@@ -610,18 +656,6 @@ class Material_OT_rainbow_colour(bpy.types.Operator):
         self.report({'INFO'}, f"Rainbow ramp added to {material.name}")
         return {'FINISHED'}
 
-#----------------------------------------------------Purging Unused Data Blocks-------------------------------------------------
-
-class DATA_OT_purge_unused(bpy.types.Operator):
-    """Purge Unused Data. WARNING DELETES ALL UNUSED DATA BLOCKS (unless saved as fake user)"""
-    bl_idname = "data.purge_unused"
-    bl_label = "Purge Unused Data"
-
-    def execute(self, context):
-        bpy.ops.outliner.orphans_purge()
-        self.report({'INFO'}, "Unused data purged.")
-        return {'FINISHED'}
-
 
 #------------------------------------------------------- Registration ------------------------------------------------------------
 
@@ -629,6 +663,7 @@ classes = [
     VIEW3D_PT_Default_Setup_Addon,
     VIEW3D_PT_Render_Settings,
     VIEW3D_PT_Output_Settings,
+    VIEW3D_PT_File_Sharing,
     VIEW3D_PT_Physics_Tab_Settings,
     VIEW3D_PT_Cloth_sims,
     VIEW3D_PT_Rigid_Bodies,
@@ -645,6 +680,9 @@ classes = [
     OUTPUT_OT_mp4_video_button,
     OUTPUT_OT_exr_video_button,
 
+    EXTERNAL_DATA_OT_pack_resources,
+    EXTERNAL_DATA_OT_relative_files,
+    DATA_OT_purge_unused,
     
     PHYSICS_OT_passive_rigid_body,
     PHYSICS_OT_active_rigid_body,
@@ -653,7 +691,6 @@ classes = [
     CONSTRAINT_OT_remove_track_to_constraint,
     Material_OT_rainbow_colour_with_principled_bsdf,
     Material_OT_rainbow_colour,
-    DATA_OT_purge_unused,
     PHYSICS_OT_cloth_sims,
     PHYSICS_OT_cloth_sims_collision,
     PHYSICS_OT_cloth_sims_clear,
