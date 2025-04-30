@@ -211,6 +211,8 @@ class RENDER_OT_cycle_gpu_button(bpy.types.Operator):
         context.scene.render.use_motion_blur = True
         context.scene.render.motion_blur_shutter = 0.5
         context.scene.render.use_persistent_data = True
+
+        self.report({'INFO'}, "Cycles is now enabled on GPU.")
         return {"FINISHED"}
 #------------------------------------------------------------ Render Optimizations ------------------------------------------------
 class RENDER_OT_render_optimization(bpy.types.Operator):
@@ -252,6 +254,7 @@ class RENDER_OT_render_optimization(bpy.types.Operator):
         render.compositor_device = 'GPU'
         render.simplify_subdivision_render = 4
 
+        self.report({'INFO'}, "Rendering Settings Optimized")
         return {'FINISHED'}
         
 #------------------------------------------------------------ 1440p res------------------------------------------------
@@ -264,6 +267,8 @@ class RENDER_OT_change_resolution_1440p(bpy.types.Operator):
     def execute(self, context):
         bpy.context.scene.render.resolution_x = 2560
         bpy.context.scene.render.resolution_y = 1440 
+
+        self.report({'INFO'}, "Camera is at 1440p Resolution.")
         return {'FINISHED'}    
 
 #------------------------------------------------------------ 1920x1080p res ----------------------------------------------------
@@ -275,6 +280,8 @@ class RENDER_OT_change_resolution_1920x1080p(bpy.types.Operator):
     def execute(self, context):
         bpy.context.scene.render.resolution_x = 1920
         bpy.context.scene.render.resolution_y = 1080
+
+        self.report({'INFO'}, "Camera is at 1080p in 9:16 Ratio.")
         return {'FINISHED'}
     
 
@@ -293,6 +300,7 @@ class OUTPUT_OT_exr_video_button(bpy.types.Operator):
         scene.render.image_settings.exr_codec = 'DWAA'
         scene.render.image_settings.quality = 90
 
+        self.report({'INFO'}, "Output set as OpenEXR File.")
         return {"FINISHED"}
 
 #-----------------------------------------------------------MP4 Video Output------------------------------------------
@@ -321,6 +329,7 @@ class EXTERNAL_DATA_OT_pack_resources(bpy.types.Operator):
 
     def execute(self, context):
         bpy.ops.file.pack_all()
+
         self.report({'INFO'}, "Files Packed.")
         return {"FINISHED"}
 
@@ -333,6 +342,7 @@ class EXTERNAL_DATA_OT_relative_files(bpy.types.Operator):
 
     def execute(self, context):
         bpy.ops.file.make_paths_relative()
+
         self.report({'INFO'}, "Files Paths Made Relative.")
         return {"FINISHED"}
 
@@ -345,6 +355,7 @@ class DATA_OT_purge_unused(bpy.types.Operator):
 
     def execute(self, context):
         bpy.ops.outliner.orphans_purge()
+        
         self.report({'INFO'}, "Unused data purged.")
         return {'FINISHED'}
 
@@ -534,9 +545,7 @@ class PHYSICS_OT_collision_sims_clear(bpy.types.Operator):
                 
         return {'FINISHED'}
 
-
 #-----------------------------------------------------------Rainbow Colour Textre--------------------------------------------------
-
 class Material_OT_rainbow_colour_with_principled_bsdf(bpy.types.Operator):
     """Adds a Rainbow Color Ramp"""
     bl_idname = "material.rainbow_colour_with_principled_bsdf"
@@ -687,10 +696,13 @@ classes = [
     PHYSICS_OT_passive_rigid_body,
     PHYSICS_OT_active_rigid_body,
     PHYSICS_OT_clear_rigid_body,
+
     CONSTRAINT_OT_add_track_to_constraint,
     CONSTRAINT_OT_remove_track_to_constraint,
+
     Material_OT_rainbow_colour_with_principled_bsdf,
     Material_OT_rainbow_colour,
+
     PHYSICS_OT_cloth_sims,
     PHYSICS_OT_cloth_sims_collision,
     PHYSICS_OT_cloth_sims_clear,
