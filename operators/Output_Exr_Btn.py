@@ -1,5 +1,4 @@
-import bpy 
-
+import bpy
 
 class OUTPUT_OT_exr_video_button(bpy.types.Operator):
     """Changes file output to exr"""
@@ -15,13 +14,5 @@ class OUTPUT_OT_exr_video_button(bpy.types.Operator):
         scene.render.image_settings.exr_codec = 'DWAA'
         scene.render.image_settings.quality = 90
 
+        self.report({'INFO'}, "Output set as OpenEXR File.")
         return {"FINISHED"}
-    
-def register():
-    bpy.utils.register_class(OUTPUT_OT_exr_video_button)
-        
-def unregister():
-    bpy.utils.unregister_class(OUTPUT_OT_exr_video_button)
-        
-if __name__ == "__main__":
-    register()

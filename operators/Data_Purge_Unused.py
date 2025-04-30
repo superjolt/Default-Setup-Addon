@@ -7,14 +7,6 @@ class DATA_OT_purge_unused(bpy.types.Operator):
 
     def execute(self, context):
         bpy.ops.outliner.orphans_purge()
+        
         self.report({'INFO'}, "Unused data purged.")
         return {'FINISHED'}
-    
-def register():
-    bpy.utils.register_class(DATA_OT_purge_unused)
-        
-def unregister():
-    bpy.utils.unregister_class(DATA_OT_purge_unused)
-        
-if __name__ == "__main__":
-    register()

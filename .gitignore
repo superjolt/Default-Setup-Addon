@@ -5,4 +5,6 @@ Default Setup.blend2
 Default Setup.blend3
 Default Setup.blend4
 Default Setup.blend5
+.DS*
 .DS_Store
+__pycache__

@@ -39,14 +39,5 @@ class RENDER_OT_render_optimization(bpy.types.Operator):
         render.compositor_device = 'GPU'
         render.simplify_subdivision_render = 4
 
+        self.report({'INFO'}, "Rendering Settings Optimized")
         return {'FINISHED'}
-    
-    
-def register():
-    bpy.utils.register_class(RENDER_OT_render_optimization)
-        
-def unregister():
-    bpy.utils.unregister_class(RENDER_OT_render_optimization)
-        
-if __name__ == "__main__":
-    register()

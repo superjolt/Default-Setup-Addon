@@ -1,6 +1,5 @@
 import bpy 
 
-
 class OUTPUT_OT_mp4_video_button(bpy.types.Operator):
     """Changes file output to mp4"""
     bl_idname = "output.equal_to_mp4"
@@ -17,12 +16,3 @@ class OUTPUT_OT_mp4_video_button(bpy.types.Operator):
         
         self.report({'INFO'}, "Output settings changed to MP4.")
         return {"FINISHED"}
-    
-def register():
-    bpy.utils.register_class(OUTPUT_OT_mp4_video_button)
-        
-def unregister():
-    bpy.utils.unregister_class(OUTPUT_OT_mp4_video_button)
-        
-if __name__ == "__main__":
-    register()

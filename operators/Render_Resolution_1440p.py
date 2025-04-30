@@ -1,7 +1,5 @@
 import bpy 
 
-
-
 class RENDER_OT_change_resolution_1440p(bpy.types.Operator):
     """Change Default Resolution to 1440p"""
     bl_idname = "render.resolution_1440p"
@@ -10,14 +8,6 @@ class RENDER_OT_change_resolution_1440p(bpy.types.Operator):
     def execute(self, context):
         bpy.context.scene.render.resolution_x = 2560
         bpy.context.scene.render.resolution_y = 1440 
-        return {'FINISHED'} 
-    
-    
-def register():
-    bpy.utils.register_class(RENDER_OT_change_resolution_1440p)
-        
-def unregister():
-    bpy.utils.unregister_class(RENDER_OT_change_resolution_1440p)
-        
-if __name__ == "__main__":
-    register()
+
+        self.report({'INFO'}, "Camera is at 1440p Resolution.")
+        return {'FINISHED'}   

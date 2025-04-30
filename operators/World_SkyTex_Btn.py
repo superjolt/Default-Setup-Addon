@@ -1,6 +1,5 @@
 import bpy 
 
-
 class WORLD_OT_sky_texture_button(bpy.types.Operator):
     """Adds the Nishita Sky Texture that is already fine-tuned"""
     bl_idname = "world.add_nishita_sky_texture"
@@ -34,14 +33,5 @@ class WORLD_OT_sky_texture_button(bpy.types.Operator):
         nishita_node.sun_rotation = 0.0
         background_node.inputs[1].default_value = 0.3
 
-        print("Nishita sky texture applied!")
+        self.log({'INFO'}, "Nishita sky texture applied!")
         return {'FINISHED'}
-    
-def register():
-    bpy.utils.register_class(WORLD_OT_sky_texture_button)
-        
-def unregister():
-    bpy.utils.unregister_class(WORLD_OT_sky_texture_button)
-        
-if __name__ == "__main__":
-    register()

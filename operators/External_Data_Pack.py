@@ -1,4 +1,4 @@
-import bpy 
+import bpy
 
 class EXTERNAL_DATA_OT_pack_resources(bpy.types.Operator):
     """Packs external files and textures into blend file"""
@@ -7,14 +7,6 @@ class EXTERNAL_DATA_OT_pack_resources(bpy.types.Operator):
 
     def execute(self, context):
         bpy.ops.file.pack_all()
+
         self.report({'INFO'}, "Files Packed.")
         return {"FINISHED"}
-    
-def register():
-    bpy.utils.register_class(EXTERNAL_DATA_OT_pack_resources)
-        
-def unregister():
-    bpy.utils.unregister_class(EXTERNAL_DATA_OT_pack_resources)
-        
-if __name__ == "__main__":
-    register()

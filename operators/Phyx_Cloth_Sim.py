@@ -1,7 +1,5 @@
 import bpy 
 
-
-
 class PHYSICS_OT_cloth_sims(bpy.types.Operator):
     """Adds a cloth sim to active object"""
     bl_idname = "physics.cloth_sims"
@@ -32,12 +30,3 @@ class PHYSICS_OT_cloth_sims(bpy.types.Operator):
             bpy.ops.object.modifier_add(type='SUBSURF')
                   
         return{"FINISHED"}
-    
-def register():
-    bpy.utils.register_class(PHYSICS_OT_cloth_sims)
-        
-def unregister():
-    bpy.utils.unregister_class(PHYSICS_OT_cloth_sims)
-        
-if __name__ == "__main__":
-    register()

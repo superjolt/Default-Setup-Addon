@@ -1,26 +1,28 @@
 import bpy
 
-from . operators import Render_GPU_btn
-from . operators import Render_Optimize_Cycles
-from . operators import Constraint_Track
-from . operators import Constraint_Track_Remove
-from . operators import Data_Purge_Unused
-from . operators import External_Data_Pack
-from . operators import External_Data_Relative
-from . operators import Material_Rainbow_BSDF
-from . operators import Material_Rainbow_Color_Ramp
-from . operators import Output_Exr_Btn
-from . operators import Output_Mp4_Btn
-from . operators import Phyx_Active_Rigid
-from . operators import Phyx_Clear_Rigid
-from . operators import Phyx_Cloth_Collision
-from . operators import Phyx_Cloth_Collision_Clear
-from . operators import Phyx_Cloth_Sim
-from . operators import Phyx_Cloth_Sim_Clear
-from . operators import Phyx_Passive_Rigid
-from . operators import Render_Resolution_1080p
-from . operators import Render_Resolution_1440p
-from . operators import World_SkyTex_Btn
+from . Operators import (
+    Render_GPU_btn,
+    Render_Optimize_Cycles,
+    Constraint_Track,
+    Constraint_Track_Remove,
+    Data_Purge_Unused,
+    External_Data_Pack,
+    External_Data_Relative,
+    Material_Rainbow_BSDF,
+    Material_Rainbow_Color_Ramp,
+    Output_Exr_Btn,
+    Output_Mp4_Btn,
+    Phyx_Active_Rigid,
+    Phyx_Clear_Rigid,
+    Phyx_Cloth_Collision,
+    Phyx_Cloth_Collision_Clear,
+    Phyx_Cloth_Sim,
+    Phyx_Cloth_Sim_Clear,
+    Phyx_Passive_Rigid,
+    Render_Resolution_1080p,
+    Render_Resolution_1440p,
+    World_SkyTex_Btn,
+)
 
 class VIEW3D_PT_Default_Setup_Addon(bpy.types.Panel):
     bl_label = "Default Setup"
@@ -199,8 +201,52 @@ class VIEW3D_OT_toggle_overlays(bpy.types.Operator):
         overlay.show_axis_z = not overlay.show_axis_z  # Toggle the Z-axis overlay
         return {"FINISHED"}
 
+""" Old classes
+classes = [
+    VIEW3D_PT_Default_Setup_Addon,
+    VIEW3D_PT_Render_Settings,
+    VIEW3D_PT_Output_Settings,
+    VIEW3D_PT_File_Sharing,
+    VIEW3D_PT_Physics_Tab_Settings,
+    VIEW3D_PT_Cloth_sims,
+    VIEW3D_PT_Rigid_Bodies,
+    VIEW3D_PT_Object_Constraints,
+    VIEW3D_PT_Misc,
 
-classes = (
+    VIEW3D_OT_toggle_overlays,
+    
+    RENDER_OT_cycle_gpu_button,
+    RENDER_OT_change_resolution_1440p,
+    RENDER_OT_change_resolution_1920x1080p,
+    RENDER_OT_render_optimization,
+    WORLD_OT_sky_texture_button,
+
+    OUTPUT_OT_mp4_video_button,
+    OUTPUT_OT_exr_video_button,
+
+    EXTERNAL_DATA_OT_pack_resources,
+    EXTERNAL_DATA_OT_relative_files,
+    DATA_OT_purge_unused,
+    
+    PHYSICS_OT_passive_rigid_body,
+    PHYSICS_OT_active_rigid_body,
+    PHYSICS_OT_clear_rigid_body,
+
+    CONSTRAINT_OT_add_track_to_constraint,
+    CONSTRAINT_OT_remove_track_to_constraint,
+
+    Material_OT_rainbow_colour_with_principled_bsdf,
+    Material_OT_rainbow_colour,
+
+    PHYSICS_OT_cloth_sims,
+    PHYSICS_OT_cloth_sims_collision,
+    PHYSICS_OT_cloth_sims_clear,
+    PHYSICS_OT_collision_sims_clear,
+    
+]
+"""
+
+classes = [
     VIEW3D_PT_Default_Setup_Addon,
     VIEW3D_PT_Render_Settings,
     VIEW3D_PT_Output_Settings,
@@ -210,62 +256,45 @@ classes = (
     VIEW3D_PT_Cloth_sims,
     VIEW3D_PT_Object_Constraints,
     VIEW3D_PT_Misc,
-    VIEW3D_OT_toggle_overlays
-)
+    
+    VIEW3D_OT_toggle_overlays,
 
+    Render_GPU_btn,
+    Render_Optimize_Cycles,
 
+    Constraint_Track,
+    Constraint_Track_Remove,
+    Data_Purge_Unused,
+    External_Data_Pack,
+    External_Data_Relative,
 
+    Material_Rainbow_BSDF,
+    Material_Rainbow_Color_Ramp,
+
+    Output_Exr_Btn,
+    Output_Mp4_Btn,
+
+    Phyx_Active_Rigid,
+    Phyx_Clear_Rigid,
+    Phyx_Cloth_Collision,
+    Phyx_Cloth_Collision_Clear,
+    Phyx_Cloth_Sim,
+    Phyx_Cloth_Sim_Clear,
+    Phyx_Passive_Rigid,
+    
+    Render_Resolution_1080p,
+    Render_Resolution_1440p,
+    World_SkyTex_Btn,
+]
 
 def register():
-    Render_GPU_btn.register()
-    Render_Optimize_Cycles.register()
-    Constraint_Track.register()
-    Constraint_Track_Remove.register()
-    Data_Purge_Unused.register()
-    External_Data_Pack.register()
-    External_Data_Relative.register()
-    Material_Rainbow_BSDF.register()
-    Material_Rainbow_Color_Ramp.register()
-    Output_Exr_Btn.register()
-    Output_Mp4_Btn.register()
-    Phyx_Active_Rigid.register()
-    Phyx_Clear_Rigid.register()
-    Phyx_Cloth_Collision.register()
-    Phyx_Cloth_Sim.register()
-    Phyx_Cloth_Sim_Clear.register()
-    Phyx_Cloth_Collision_Clear.register()
-    Phyx_Passive_Rigid.register()
-    Render_Resolution_1080p.register()
-    Render_Resolution_1440p.register()
-    World_SkyTex_Btn.register()
     for cls in classes:
         bpy.utils.register_class(cls)
-    
-    
-    
+
 def unregister():
-    Render_GPU_btn.unregister()
-    Render_Optimize_Cycles.unregister()
-    Constraint_Track.unregister()
-    Constraint_Track_Remove.unregister()
-    Data_Purge_Unused.unregister()
-    External_Data_Pack.unregister()
-    External_Data_Relative.unregister()
-    Material_Rainbow_BSDF.unregister()
-    Material_Rainbow_Color_Ramp.unregister()
-    Output_Exr_Btn.unregister()
-    Output_Mp4_Btn.unregister()
-    Phyx_Active_Rigid.unregister()
-    Phyx_Clear_Rigid.unregister()
-    Phyx_Cloth_Collision.unregister()
-    Phyx_Cloth_Sim.unregister()
-    Phyx_Cloth_Sim_Clear.unregister()
-    Phyx_Cloth_Collision_Clear.unregister()
-    Phyx_Passive_Rigid.unregister()
-    Render_Resolution_1080p.unregister()
-    Render_Resolution_1440p.unregister()
-    World_SkyTex_Btn.unregister()
     for cls in reversed(classes):
         bpy.utils.unregister_class(cls)
-    
+
+if __name__ == "__main__":
+    register()
     

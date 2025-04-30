@@ -1,6 +1,5 @@
 import bpy 
 
-
 class Material_OT_rainbow_colour_with_principled_bsdf(bpy.types.Operator):
     """Adds a Rainbow Color Ramp"""
     bl_idname = "material.rainbow_colour_with_principled_bsdf"
@@ -68,11 +67,3 @@ class Material_OT_rainbow_colour_with_principled_bsdf(bpy.types.Operator):
         self.report({'INFO'}, f"Rainbow ramp added to {material.name}")
         return {'FINISHED'}
     
-def register():
-    bpy.utils.register_class(Material_OT_rainbow_colour_with_principled_bsdf)
-        
-def unregister():
-    bpy.utils.unregister_class(Material_OT_rainbow_colour_with_principled_bsdf)
-        
-if __name__ == "__main__":
-    register()

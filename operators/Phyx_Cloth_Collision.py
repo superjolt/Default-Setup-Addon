@@ -1,6 +1,5 @@
 import bpy 
 
-
 class PHYSICS_OT_cloth_sims_collision(bpy.types.Operator): 
     """Adds a collision modifier to active object"""
     bl_idname = "physics.cloth_sims_collision"
@@ -16,12 +15,3 @@ class PHYSICS_OT_cloth_sims_collision(bpy.types.Operator):
             bpy.ops.object.modifier_add(type='COLLISION')
 
         return{"FINISHED"}
-    
-def register():
-    bpy.utils.register_class(PHYSICS_OT_cloth_sims_collision)
-        
-def unregister():
-    bpy.utils.unregister_class(PHYSICS_OT_cloth_sims_collision)
-        
-if __name__ == "__main__":
-    register()

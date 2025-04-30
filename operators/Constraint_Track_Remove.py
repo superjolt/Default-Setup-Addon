@@ -1,6 +1,5 @@
 import bpy 
 
-
 class CONSTRAINT_OT_remove_track_to_constraint(bpy.types.Operator):
     """Removing the object constraint of 'Track To' from an object"""
     bl_idname = "constraints.remove_track_to_constraint"
@@ -10,13 +9,3 @@ class CONSTRAINT_OT_remove_track_to_constraint(bpy.types.Operator):
         if context.object and context.object.constraints.get("Track"):
             bpy.ops.constraint.delete(constraint="Track", owner='OBJECT')
         return {"FINISHED"}
-    
-    
-def register():
-    bpy.utils.register_class(CONSTRAINT_OT_remove_track_to_constraint)
-        
-def unregister():
-    bpy.utils.unregister_class(CONSTRAINT_OT_remove_track_to_constraint)
-        
-if __name__ == "__main__":
-    register()

@@ -11,12 +11,3 @@ class PHYSICS_OT_passive_rigid_body(bpy.types.Operator):
         bpy.context.object.rigid_body.collision_shape = 'MESH'
         
         return {"FINISHED"}
-    
-def register():
-    bpy.utils.register_class(PHYSICS_OT_passive_rigid_body)
-        
-def unregister():
-    bpy.utils.unregister_class(PHYSICS_OT_passive_rigid_body)
-        
-if __name__ == "__main__":
-    register()
