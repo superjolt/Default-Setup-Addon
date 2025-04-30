@@ -27,6 +27,11 @@ This addon includes common features that are quick to access like (subject to ch
         - output as 1920x1080p (for tiktok/yt shorts)
         - output as OpenEXR (single channel)
         - output as mp4 video
+    
+    - File Sharing
+        - pack resources
+        - set files to relative path
+        - purge unused data
 
     - Physics
         - Cloth Simulations 
@@ -44,8 +49,6 @@ This addon includes common features that are quick to access like (subject to ch
         - Add rainbow colour ramp (single colour ramp)
         - Purge unused data
 
-## (Subject to change)
+(Subject to Change)
 - changes/plans for the addon are available in 'plan.txt'
 Some more functions will be added soon.
-
-    

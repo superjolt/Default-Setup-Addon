@@ -1,26 +1,26 @@
 import bpy
 
-from . functions import Render_GPU_btn
-from . functions import Render_Optimize_Cycles
-from . functions import Constraint_Track
-from . functions import Constraint_Track_Remove
-from . functions import Data_Purge_Unused
-from . functions import External_Data_Pack
-from . functions import External_Data_Relative
-from . functions import Material_Rainbow_BSDF
-from . functions import Material_Rainbow_Color_Ramp
-from . functions import Output_Exr_Btn
-from . functions import Output_Mp4_Btn
-from . functions import Phyx_Active_Rigid
-from . functions import Phyx_Clear_Rigid
-from . functions import Phyx_Cloth_Collision
-from . functions import Phyx_Cloth_Collision_Clear
-from . functions import Phyx_Cloth_Sim
-from . functions import Phyx_Cloth_Sim_Clear
-from . functions import Phyx_Passive_Rigid
-from . functions import Render_Resolution_1080p
-from . functions import Render_Resolution_1440p
-from . functions import World_SkyTex_Btn
+from . operators import Render_GPU_btn
+from . operators import Render_Optimize_Cycles
+from . operators import Constraint_Track
+from . operators import Constraint_Track_Remove
+from . operators import Data_Purge_Unused
+from . operators import External_Data_Pack
+from . operators import External_Data_Relative
+from . operators import Material_Rainbow_BSDF
+from . operators import Material_Rainbow_Color_Ramp
+from . operators import Output_Exr_Btn
+from . operators import Output_Mp4_Btn
+from . operators import Phyx_Active_Rigid
+from . operators import Phyx_Clear_Rigid
+from . operators import Phyx_Cloth_Collision
+from . operators import Phyx_Cloth_Collision_Clear
+from . operators import Phyx_Cloth_Sim
+from . operators import Phyx_Cloth_Sim_Clear
+from . operators import Phyx_Passive_Rigid
+from . operators import Render_Resolution_1080p
+from . operators import Render_Resolution_1440p
+from . operators import World_SkyTex_Btn
 
 class VIEW3D_PT_Default_Setup_Addon(bpy.types.Panel):
     bl_label = "Default Setup"
